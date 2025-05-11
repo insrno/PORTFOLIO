@@ -43,23 +43,32 @@ function Projects() {
           {projectList.map((project, index) => (
             <div
               key={index}
-              className="group relative bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer border border-[#E5E1DA]/50"
-              onClick={() => navigate(`/projects/${project.id}`)}
+              className={`group relative bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden ${
+                project.id === 'comingsoon' ? '' : 'cursor-pointer'
+              } border border-[#E5E1DA]/50`}
+              onClick={() => project.id !== 'comingsoon' && navigate(`/projects/${project.id}`)}
             >
               {/* Image Container */}
               <div className="relative h-56 w-full overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {project.id === 'comingsoon' ? (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#B3C8CF]/10 to-[#89A8B2]/10">
+                  </div>
+                ) : (
+                  <>
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </>
+                )}
               </div>
               
               {/* Content Container */}
               <div className="p-6">
                 <h4 className="text-2xl font-bold mb-3 text-[#89A8B2] group-hover:text-[#B3C8CF] transition-colors duration-300">
-                  {project.title}
+                  {project.title || 'Coming Soon'}
                 </h4>
                 <p className="text-[#181e29] text-base leading-relaxed mb-4">
                   {project.description}
@@ -77,8 +86,10 @@ function Projects() {
                 </div>
               </div>
               
-              {/* Hover Effect Overlay */}
-              <div className="absolute inset-0 border-2 border-[#B3C8CF] rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              {/* Hover Effect Overlay - Only show for actual projects */}
+              {project.id !== 'comingsoon' && (
+                <div className="absolute inset-0 border-2 border-[#B3C8CF] rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              )}
             </div>
           ))}
         </div>
