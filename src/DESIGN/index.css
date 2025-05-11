@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+/* Remove or comment out these lines:
+:root {
+  color-scheme: light;
+  color: var(--color-text, #222f2f);
+  background-color: var(--color-bg, #F1F0E8);
+}
+body {
+  background: var(--color-bg, #F1F0E8);
+  color: var(--color-text, #222f2f);
+}
+*/
+
+a {
+  font-weight: 500;
+  color: var(--color-primary, #89A8B2);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--color-secondary, #B3C8CF);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  color: var(--color-primary, #89A8B2);
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--color-primary, #89A8B2);
+  color: var(--color-text, #222f2f);
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s, color 0.25s, box-shadow 0.25s, transform 0.1s;
+}
+button:hover {
+  border-color: var(--color-secondary, #B3C8CF);
+  background: var(--color-secondary, #B3C8CF);
+  color: var(--color-text, #222f2f);
+  box-shadow: 0 2px 8px 0 var(--color-secondary, #B3C8CF);
+  transform: scale(1.05);
+}
+button:active {
+  background: var(--color-accent, #E5E1DA);
+  color: var(--color-text, #222f2f);
+  transform: scale(0.97);
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto var(--color-primary, #89A8B2);
+}
+
+html {
+  scroll-behavior: smooth;
+}

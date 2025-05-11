@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #89A8B2;
+  --color-secondary: #B3C8CF;
+  --color-accent: #E5E1DA;
+  --color-bg: #181e29;
+  --color-text-dark: #fff;
+  --color-text-light: #fff;
+}
+
+html, body, #root {
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--color-bg);
+  color: var(--color-text-dark);
+}
+
+section, header, footer {
+  width: 100vw;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background: var(--color-bg);
+}
+
+/* Color-changing animation */
+@keyframes color-change {
+  0% { color: var(--color-primary);}
+  25% { color: var(--color-secondary);}
+  50% { color: var(--color-accent);}
+  75% { color: var(--color-primary);}
+  100% { color: var(--color-primary);}
+}
+.animate-color-change {
+  animation: color-change 5s infinite;
+}
+
+/* Fade-in animation for intro overlay */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-in-out both;
+}
+
+/* Fade-out animation for intro overlay */
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.animate-fade-out {
+  animation: fade-out 0.5s ease-in-out both;
+}
+
+@keyframes soft-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(12px); opacity: 1; }
+}
+.animate-soft-bounce {
+  animation: soft-bounce 1.6s infinite cubic-bezier(0.4,0,0.2,1);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 18s linear infinite;
+}
+
+/* Make header nav buttons transparent and modern */
+.header-nav-btn {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 9999px !important;
+  box-shadow: none !important;
+  color: #3B6C8A !important;
+  font-weight: 600;
+  transition: color 0.2s, box-shadow 0.2s;
+  padding: 0.6em 1.2em;
+}
+.header-nav-btn:hover, .header-nav-btn:focus-visible {
+  background: linear-gradient(90deg, #B3C8CF33 0%, #89A8B233 100%) !important;
+  color: #4F8CA5 !important;
+  box-shadow: 0 2px 12px 0 #B3C8CF33;
+}
+.header-nav-btn:active {
+  background: linear-gradient(90deg, #B3C8CF55 0%, #89A8B255 100%) !important;
+  color: #3B6C8A !important;
+}
