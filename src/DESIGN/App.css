@@ -10,20 +10,30 @@
 }
 
 html, body, #root {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   background: var(--color-bg);
   color: var(--color-text-dark);
+  overflow-x: hidden;
 }
 
 section, header, footer {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   box-sizing: border-box;
   background: var(--color-bg);
+  overflow-x: hidden;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  h1 { font-size: 2.5em; }
+  h2 { font-size: 2em; }
+  h3 { font-size: 1.75em; }
+  p { font-size: 1em; }
 }
 
 /* Color-changing animation */

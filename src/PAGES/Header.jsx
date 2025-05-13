@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import { FaUser, FaTools, FaProjectDiagram, FaEnvelope } from 'react-icons/fa';
+import { FaUser, FaTools, FaProjectDiagram, FaEnvelope, FaBars, FaTimes } from 'react-icons/fa';
 
 function Header() {
   const [activeSection, setActiveSection] = useState('');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleScroll = (section) => {
     setActiveSection(section);
     document.getElementById(section).scrollIntoView({ behavior: 'smooth' });
+    setIsMenuOpen(false);
   };
 
   return (
@@ -19,17 +21,26 @@ function Header() {
             <img
               src="/assets/IMG_1678.JPG"
               alt="Christian"
-              className="relative w-12 h-12 rounded-full border-2 border-white/30 shadow-lg hover:border-[#89A8B2] transition-all duration-300"
+              className="relative w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-white/30 shadow-lg hover:border-[#89A8B2] transition-all duration-300"
             />
           </div>
-          <span className="text-2xl font-extrabold tracking-wide bg-gradient-to-r from-[#89A8B2] to-[#B3C8CF] bg-clip-text text-transparent group-hover:from-[#B3C8CF] group-hover:to-[#89A8B2] transition-all duration-300">
+          <span className="text-xl md:text-2xl font-extrabold tracking-wide bg-gradient-to-r from-[#89A8B2] to-[#B3C8CF] bg-clip-text text-transparent group-hover:from-[#B3C8CF] group-hover:to-[#89A8B2] transition-all duration-300">
             Christian Serrano
           </span>
         </div>
 
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-2 text-[#3B6C8A] hover:text-[#4F8CA5] transition-colors"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+        </button>
+
         {/* Navigation with Icons */}
-        <nav>
-          <ul className="flex gap-3 text-lg">
+        <nav className={`${isMenuOpen ? 'block' : 'hidden'} md:block absolute md:relative top-full md:top-auto left-0 w-full md:w-auto bg-white/10 backdrop-blur-xl md:bg-transparent md:backdrop-blur-none border-b md:border-b-0 border-white/20 md:border-none`}>
+          <ul className="flex flex-col md:flex-row gap-3 text-lg p-4 md:p-0">
             {[
               { id: 'about', icon: FaUser, label: 'About' },
               { id: 'skills', icon: FaTools, label: 'Skills' },
@@ -39,7 +50,7 @@ function Header() {
               <li key={item.id}>
                 <button
                   onClick={() => handleScroll(item.id)}
-                  className={`header-nav-btn group relative flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-[#B3C8CF]/60`}
+                  className={`header-nav-btn group relative flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-[#B3C8CF]/60 w-full md:w-auto`}
                   title={item.label}
                 >
                   <span className="relative z-10 flex items-center gap-2">
