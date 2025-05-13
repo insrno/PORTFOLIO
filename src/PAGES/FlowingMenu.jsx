@@ -58,6 +58,10 @@ function MenuItem({ text, tools }) {
       .to(marqueeInnerRef.current, { y: edge === 'top' ? '101%' : '-101%' }, 0);
   };
 
+  const handleClick = (e) => {
+    e.preventDefault(); // Prevent default click behavior
+  };
+
   // Repeat marquee content for effect
   const repeatedMarqueeContent = Array.from({ length: 4 }).flatMap((_, idx) =>
     tools.map((tool, tIdx) => (
@@ -75,6 +79,7 @@ function MenuItem({ text, tools }) {
         href="#"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
       >
         {text}
       </a>

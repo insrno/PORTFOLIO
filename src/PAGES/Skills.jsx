@@ -42,7 +42,7 @@ export default function Skills() {
       className="py-20 min-h-[60vh] bg-gradient-to-b from-[#E5E1DA] via-[#F1F0E8] to-white flex flex-col items-center justify-center"
     >
       <div className="container mx-auto text-center max-w-5xl">
-        <h3 className="text-4xl font-bold mb-10 text-[#181e29] drop-shadow"></h3>
+        <h3 className="text-4xl font-bold mb-10 text-[#181e29] drop-shadow">Skills</h3>
         <FlowingMenu items={categories} />
       </div>
     </section>
