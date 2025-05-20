@@ -1,32 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import codestacleImg from '/assets/codestaclestart.png';
-import chixmounliLogo from '/assets/chixmounli/chixmounlilogo.png';
-
-const projectList = [
-  {
-    id: 'codestacle',
-    title: 'Codestacle',
-    image: codestacleImg,
-    description: 'A 2D platformer game that makes learning programming fun through interactive gameplay and coding challenges.',
-    tags: ['Game Development', 'Education', 'Godot']
-  },
-  {
-    id: 'chixmounli',
-    title: 'CHICKS-MO-UNLI RESTAURANT MANAGEMENT SYSTEM',
-    image: chixmounliLogo,
-    description: 'A restaurant management system for Chicks-Mo-Unli, specializing in order tracking, stock management, and financial reporting.',
-    tags: ['Restaurant Management System', 'Flutter', 'Mobile Development']
-  },
-  {
-    id: 'comingsoon',
-    title: '',
-    description: 'Stay tuned for more projects and updates!',
-    tags: ['TBA']
-  }
-];
+import { projectList } from '../data/projects';
 
 function Projects() {
   const navigate = useNavigate();
+  
   return (
     <section id="projects" className="py-12 md:py-20 min-h-screen bg-gradient-to-b from-[#E5E1DA] via-[#F1F0E8] to-white flex flex-col items-center justify-center">
       <div className="container mx-auto px-4">
