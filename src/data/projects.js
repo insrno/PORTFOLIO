@@ -2,10 +2,12 @@ import codestacleImg from '/assets/codestaclestart.png';
 import runiImg from '/assets/Runi the all knowing.png';
 import b01Img from '/assets/b01.png';
 import chixmounliLogo from '/assets/chixmounli/chixmounlilogo.png';
+import roleSpecificLogo from '/assets/role_specific/role_specific_logo.png';
 
 // Import all gallery images
 import codestacleGallery from './gallery/codestacle';
 import chixmounliGallery from './gallery/chixmounli';
+import roleSpecificGallery from './gallery/role_specific';
 
 export const projectList = [
   {
@@ -80,6 +82,47 @@ export const projectList = [
         'Currently supports single-branch operations; multi-branch support is a planned enhancement.',
         'Focused on management and analytics, not intended as a full POS system.',
         'Future improvements: offline mode, expanded reporting, and more integrations.'
+      ]
+    }
+  },
+  {
+    id: 'role-specific-pos',
+    title: 'ROLE-SPECIFIC POS SYSTEM',
+    image: roleSpecificLogo,
+    description: 'A modern, user-friendly POS system for fast food restaurants, built with Java OOP.',
+    tags: ['POS System', 'Java', 'JavaFX', 'Desktop App'],
+    gallery: roleSpecificGallery,
+    techStack: [
+      { name: 'Java', icon: '☕', description: 'Programming Language' },
+      { name: 'OOP', icon: '🧩', description: 'Design Principle' },
+      { name: 'JavaFX', icon: '🖥️', description: 'UI Framework' },
+      { name: 'Swing', icon: '🪟', description: 'UI Toolkit' },
+      { name: 'SQLite', icon: '🗄️', description: 'Embedded Database' },
+      { name: 'MySQL', icon: '💾', description: 'Database' }
+    ],
+    details: {
+      overview: 'A robust POS system with role-based access, order management, analytics, and inventory features. Designed for fast food and similar businesses.',
+      highlights: [
+        'Role-based login with PIN and admin override',
+        'Customizable menu and order options',
+        'Order status tracking and kitchen display',
+        'Comprehensive analytics and sales reports',
+        'Inventory and employee management',
+        'Discount coupon management'
+      ],
+      features: [
+        'Login Tab: Role-based PIN login, admin override, secure access',
+        'Main Tab: Menu selection, order customization, receipt printing, cash handling',
+        'Orders Tab: Kitchen order list, status updates, order history, void/cancel options',
+        'Analytics: Order metrics, sales reports, inventory insights',
+        'Inventory Management: Restock, low-stock alerts, item popularity tracking',
+        'Employee Details: CRUD for employee info, role assignment',
+        'Discount Coupon Management: Create, edit, and track usage'
+      ],
+      limitations: [
+        'No E-Wallet/Debit Card integration (offline/local only)',
+        'Single-branch support (multi-branch planned)',
+        'No online payment platform integration'
       ]
     }
   },
