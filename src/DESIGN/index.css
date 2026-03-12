@@ -34,26 +34,21 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: var(--color-primary, #89A8B2);
-  color: var(--color-text, #222f2f);
+  background-color: transparent;
+  color: inherit;
   cursor: pointer;
   transition: border-color 0.25s, background 0.25s, color 0.25s, box-shadow 0.25s, transform 0.1s;
 }
 button:hover {
-  border-color: var(--color-secondary, #B3C8CF);
-  background: var(--color-secondary, #B3C8CF);
-  color: var(--color-text, #222f2f);
-  box-shadow: 0 2px 8px 0 var(--color-secondary, #B3C8CF);
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 button:active {
-  background: var(--color-accent, #E5E1DA);
-  color: var(--color-text, #222f2f);
   transform: scale(0.97);
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto var(--color-primary, #89A8B2);
+  outline: 2px solid var(--color-primary, #89A8B2);
+  outline-offset: 2px;
 }
 
 html {

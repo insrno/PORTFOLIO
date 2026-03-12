@@ -1,18 +1,51 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaUser, FaTools, FaProjectDiagram, FaEnvelope, FaBars, FaTimes } from 'react-icons/fa';
 
 function Header() {
   const [activeSection, setActiveSection] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Track scroll progress for the top progress bar
+  useEffect(() => {
+    const onScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+      const max = scrollHeight - clientHeight;
+      setScrollProgress(max > 0 ? (scrollTop / max) * 100 : 0);
+      if (scrollTop < 150) setActiveSection('');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // IntersectionObserver: auto-highlight nav item for visible section
+  useEffect(() => {
+    const sections = ['about', 'skills', 'projects', 'contact'];
+    const observers = sections.map(id => {
+      const el = document.getElementById(id);
+      if (!el) return null;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        { threshold: 0.35 }
+      );
+      obs.observe(el);
+      return obs;
+    });
+    return () => observers.forEach(obs => obs?.disconnect());
+  }, []);
 
   const handleScroll = (section) => {
-    setActiveSection(section);
-    document.getElementById(section).scrollIntoView({ behavior: 'smooth' });
+    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
     setIsMenuOpen(false);
   };
 
   return (
     <header className="fixed top-0 left-0 w-full bg-white/10 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] z-50 text-[var(--color-text)] transition-all duration-300 border-b border-white/20">
+      {/* Scroll progress bar */}
+      <div
+        className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-[#89A8B2] via-[#B3C8CF] to-[#89A8B2] transition-all duration-150 ease-out"
+        style={{ width: `${scrollProgress}%` }}
+      />
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Avatar and Name */}
         <div className="flex items-center gap-4 group">
@@ -25,7 +58,7 @@ function Header() {
             />
           </div>
           <span className="text-xl md:text-2xl font-extrabold tracking-wide bg-gradient-to-r from-[#89A8B2] to-[#B3C8CF] bg-clip-text text-transparent group-hover:from-[#B3C8CF] group-hover:to-[#89A8B2] transition-all duration-300">
-            Christian Serrano
+            CS<span className="text-[#B3C8CF]">.</span>dev
           </span>
         </div>
 
@@ -38,9 +71,11 @@ function Header() {
           {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </button>
 
-        {/* Navigation with Icons */}
-        <nav className={`${isMenuOpen ? 'block' : 'hidden'} md:block absolute md:relative top-full md:top-auto left-0 w-full md:w-auto bg-white/10 backdrop-blur-xl md:bg-transparent md:backdrop-blur-none border-b md:border-b-0 border-white/20 md:border-none`}>
-          <ul className="flex flex-col md:flex-row gap-3 text-lg p-4 md:p-0">
+        {/* Navigation */}
+        <nav className={`${
+          isMenuOpen ? 'flex' : 'hidden'
+        } md:flex flex-col md:flex-row absolute md:relative top-full md:top-auto left-0 w-full md:w-auto bg-white/80 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none border-b md:border-b-0 border-[#E5E1DA] md:border-none py-2 md:py-0`}>
+          <ul className="flex flex-col md:flex-row gap-0 md:gap-1 px-4 md:px-0">
             {[
               { id: 'about', icon: FaUser, label: 'About' },
               { id: 'skills', icon: FaTools, label: 'Skills' },
@@ -50,22 +85,17 @@ function Header() {
               <li key={item.id}>
                 <button
                   onClick={() => handleScroll(item.id)}
-                  className={`header-nav-btn group relative flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-[#B3C8CF]/60 w-full md:w-auto`}
-                  title={item.label}
-                >
-                  <span className="relative z-10 flex items-center gap-2">
-                    <item.icon className={`transition-all duration-300 ${
-                      activeSection === item.id 
-                        ? 'text-white scale-125 drop-shadow-[0_2px_8px_rgba(139,200,207,0.35)]' 
-                        : 'text-[#3B6C8A] opacity-90 group-hover:scale-110 group-hover:text-[#4F8CA5]'
-                    }`} />
-                    <span className="transition-all duration-300 text-[#3B6C8A]">{item.label}</span>
-                  </span>
-                  <div className={`absolute inset-0 rounded-full pointer-events-none transition-all duration-300 ${
+                  className={`group relative flex items-center gap-2 px-4 py-2.5 text-sm font-semibold tracking-wide transition-colors duration-200 bg-transparent border-none outline-none w-full md:w-auto ${
                     activeSection === item.id
-                      ? 'bg-gradient-to-r from-[#B3C8CF]/30 to-[#89A8B2]/30 opacity-60 blur-sm'
-                      : 'group-hover:bg-gradient-to-r group-hover:from-[#B3C8CF]/20 group-hover:to-[#89A8B2]/20 group-hover:opacity-40 group-hover:blur-[2px] opacity-0'
-                  }`}></div>
+                      ? 'text-[#89A8B2]'
+                      : 'text-[#555f6e] hover:text-[#89A8B2]'
+                  }`}
+                >
+                  <item.icon className="text-xs opacity-70" />
+                  {item.label}
+                  <span className={`absolute bottom-1 left-4 right-4 h-[2px] rounded-full bg-[#89A8B2] transition-all duration-200 ${
+                    activeSection === item.id ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0 group-hover:opacity-40 group-hover:scale-x-100'
+                  }`} />
                 </button>
               </li>
             ))}

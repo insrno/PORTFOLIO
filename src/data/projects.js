@@ -16,6 +16,7 @@ export const projectList = [
     image: codestacleImg,
     description: 'A 2D platformer game that makes learning programming fun through interactive gameplay and coding challenges.',
     tags: ['Game Development', 'Education', 'Godot'],
+    category: 'Game Dev',
     gallery: codestacleGallery,
     characters: [
       { src: runiImg, alt: 'Runi the all knowing' },
@@ -59,6 +60,7 @@ export const projectList = [
     image: chixmounliLogo,
     description: 'A restaurant management system for Chicks-Mo-Unli, specializing in order tracking, stock management, and financial reporting.',
     tags: ['Restaurant Management System', 'Flutter', 'Mobile Development'],
+    category: 'Mobile',
     gallery: chixmounliGallery,
     techStack: [
       { name: 'Flutter', icon: '🦋', description: 'Framework' },
@@ -91,6 +93,7 @@ export const projectList = [
     image: roleSpecificLogo,
     description: 'A modern, user-friendly POS system for fast food restaurants, built with Java OOP.',
     tags: ['POS System', 'Java', 'JavaFX', 'Desktop App'],
+    category: 'Desktop',
     gallery: roleSpecificGallery,
     techStack: [
       { name: 'Java', icon: '☕', description: 'Programming Language' },
@@ -130,6 +133,7 @@ export const projectList = [
     id: 'comingsoon',
     title: '',
     description: 'Stay tuned for more projects and updates!',
-    tags: ['TBA']
+    tags: ['TBA'],
+    category: 'Other'
   }
 ]; 

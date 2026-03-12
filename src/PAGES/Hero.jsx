@@ -1,6 +1,45 @@
 import { useState, useEffect } from 'react';
 import resumePDF from '/assets/Christian_Serrano_Resume.pdf';
 
+const ROLES = ['Frontend Developer', 'Game Developer', 'CS Student @ UCC', 'Problem Solver'];
+
+function TypewriterRole() {
+  const [roleIdx, setRoleIdx] = useState(0);
+  const [text, setText] = useState('');
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = ROLES[roleIdx];
+    if (!deleting && text.length < current.length) {
+      const t = setTimeout(() => setText(current.slice(0, text.length + 1)), 75);
+      return () => clearTimeout(t);
+    }
+    if (!deleting && text.length === current.length) {
+      const t = setTimeout(() => setDeleting(true), 1800);
+      return () => clearTimeout(t);
+    }
+    if (deleting && text.length > 0) {
+      const t = setTimeout(() => setText(text.slice(0, -1)), 38);
+      return () => clearTimeout(t);
+    }
+    if (deleting && text.length === 0) {
+      setDeleting(false);
+      setRoleIdx(i => (i + 1) % ROLES.length);
+    }
+  }, [text, deleting, roleIdx]);
+
+  return (
+    <span className="font-mono text-base md:text-lg text-[#89A8B2] tracking-wide">
+      &lt;&nbsp;<span className="font-semibold">{text}</span>
+      <span
+        className="inline-block w-[2px] h-[1em] bg-[#89A8B2] align-middle ml-0.5"
+        style={{ animation: 'termCursor 0.8s step-end infinite' }}
+      />
+      &nbsp;/&gt;
+    </span>
+  );
+}
+
 function Hero() {
   const [showResume, setShowResume] = useState(false);
   const [showScrollDown, setShowScrollDown] = useState(true);
@@ -19,60 +58,91 @@ function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen flex flex-col md:flex-row items-center justify-between bg-gradient-to-b from-[#E5E1DA] via-[#F1F0E8] to-white py-16 px-4 md:px-8 overflow-hidden"
+      className="relative w-full min-h-screen flex flex-col md:flex-row items-center justify-center bg-gradient-to-b from-[#E5E1DA] via-[#F1F0E8] to-white py-16 px-4 md:px-8 overflow-hidden"
     >
-      {/* Portrait as background element */}
-      <div className="absolute left-0 bottom-0 h-[130%] w-auto z-0 pointer-events-none select-none ml-[5vw] md:ml-[15vw] group">
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#E5E1DA]/20 via-transparent to-transparent z-10"></div>
-        {/* Glow effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#B3C8CF]/10 to-transparent blur-3xl z-0 animate-pulse"></div>
-        {/* Main image with modern effects */}
-        <img
-          src="/assets/DSC_0051-removebg-preview.png"
-          alt="Your portrait"
-          className="relative h-full w-auto object-contain opacity-100 transition-all duration-500 group-hover:scale-[1.02] group-hover:brightness-110 group-hover:contrast-105"
-          style={{ 
-            maxWidth: '90vw', 
-            minWidth: '200px',
-            filter: 'drop-shadow(0 0 20px rgba(139, 168, 178, 0.2))',
-            transform: 'perspective(1000px) rotateY(-5deg)',
-            transformStyle: 'preserve-3d'
+      {/* Subtle background blobs for depth */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+        <div
+          className="absolute w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full opacity-20"
+          style={{
+            background: 'radial-gradient(circle, #89A8B2 0%, transparent 70%)',
+            top: '20%',
+            left: '5%',
+            filter: 'blur(80px)',
+            animation: 'heroFloat1 8s ease-in-out infinite',
           }}
         />
-        {/* Decorative elements */}
-        <div className="absolute -bottom-4 -right-4 w-24 md:w-32 h-24 md:h-32 bg-gradient-to-br from-[#B3C8CF]/20 to-[#89A8B2]/20 rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute -top-4 -left-4 w-16 md:w-24 h-16 md:h-24 bg-gradient-to-tr from-[#E5E1DA]/30 to-[#F1F0E8]/30 rounded-full blur-xl animate-pulse"></div>
+        <div
+          className="absolute w-[250px] h-[250px] md:w-[400px] md:h-[400px] rounded-full opacity-15"
+          style={{
+            background: 'radial-gradient(circle, #B3C8CF 0%, transparent 70%)',
+            bottom: '15%',
+            right: '10%',
+            filter: 'blur(70px)',
+            animation: 'heroFloat2 10s ease-in-out infinite',
+          }}
+        />
       </div>
+
+      {/* Avatar with 3D floating effect */}
+      <div className="relative z-10 flex items-center justify-center w-full md:w-1/2 mt-20 md:mt-0">
+        {/* Glow ring behind avatar */}
+        <div
+          className="absolute w-[400px] h-[400px] md:w-[550px] md:h-[550px] rounded-full"
+          style={{
+            background: 'conic-gradient(from 0deg, #89A8B2, #B3C8CF, #E5E1DA, #B3C8CF, #89A8B2)',
+            filter: 'blur(50px)',
+            opacity: 0.2,
+            animation: 'heroFloat2 10s ease-in-out infinite',
+          }}
+        />
+        <img
+          src="/assets/graphiccartoon-nobg.png"
+          alt="Christian Serrano avatar"
+          className="relative w-[380px] h-auto md:w-[500px] lg:w-[600px] object-contain"
+          style={{
+            animation: 'heroAvatar 6s ease-in-out infinite',
+            filter: 'drop-shadow(0 25px 60px rgba(137, 168, 178, 0.4))',
+            transformStyle: 'preserve-3d',
+          }}
+        />
+      </div>
+
       {/* Info Card */}
-      <div className="w-full md:w-1/2 relative z-10 max-w-xl flex flex-col items-center md:items-start text-center md:text-left ml-auto mt-32 md:mt-0">
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-[#181e29]">Christian Serrano</h1>
+      <div className="w-full md:w-1/2 relative z-10 max-w-xl flex flex-col items-center md:items-start text-center md:text-left mt-8 md:mt-0">
+        <h1 className="text-4xl md:text-5xl font-extrabold mb-2 text-[#181e29]">Christian Serrano</h1>
+        <div className="mb-4">
+          <TypewriterRole />
+        </div>
         <h2 className="text-xl md:text-2xl font-semibold mb-6 text-[#89A8B2]">
           Not a coding ninja yet, but I've got coffee, curiosity, and Ctrl+Z.
         </h2>
         <div className="w-full flex justify-center md:justify-start">
           <button
             onClick={handleResumeClick}
-            className="bg-gradient-to-r from-[#B3C8CF] via-[#E5E1DA] to-[#F1F0E8] text-[#181e29] px-6 md:px-10 py-2 md:py-3 rounded-full border-2 border-[#89A8B2] shadow-lg font-bold text-base md:text-lg tracking-wide transition-all duration-200 hover:from-[#E5E1DA] hover:to-[#B3C8CF] hover:text-[#89A8B2] hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-[#B3C8CF] mt-8"
+            className="bg-transparent text-[#89A8B2] px-6 md:px-10 py-2 md:py-3 rounded-full border-2 border-[#89A8B2] font-bold text-base md:text-lg tracking-wide transition-all duration-300 hover:bg-[#89A8B2]/10 hover:border-[#89A8B2] hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[#B3C8CF]/40 mt-8"
           >
             <span className="inline-flex items-center gap-2">
-              <svg className="w-4 h-4 md:w-5 md:h-5 text-[#89A8B2]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M1.5 12s3.5-7 10.5-7 10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z" /><circle cx="12" cy="12" r="3" /></svg>
+              <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M1.5 12s3.5-7 10.5-7 10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z" /><circle cx="12" cy="12" r="3" /></svg>
               See Resume
             </span>
           </button>
         </div>
       </div>
 
-      {/* Scroll Down Indicator */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 bottom-5 flex flex-col items-center z-20">
-        <span className={`block mb-2 text-lg md:text-xl font-semibold text-[#89A8B2] tracking-wide animate-fade-in transition-opacity duration-500 ${showScrollDown ? 'opacity-100' : 'opacity-0'}`}>
-          Scroll Down
-        </span>
+      {/* Mouse scroll indicator */}
+      <div className={`absolute left-1/2 transform -translate-x-1/2 bottom-8 flex flex-col items-center z-20 transition-opacity duration-500 ${showScrollDown ? 'opacity-100' : 'opacity-0'}`}>
+        <div className="w-6 h-10 rounded-full border-2 border-[#89A8B2]/60 flex justify-center pt-2">
+          <div
+            className="w-1.5 h-1.5 rounded-full bg-[#89A8B2]"
+            style={{ animation: 'scrollDot 2s ease-in-out infinite' }}
+          />
+        </div>
         <svg
-          className={`w-6 h-6 md:w-8 md:h-8 text-[#89A8B2] animate-bounce transition-opacity duration-500 ${showScrollDown ? 'opacity-100' : 'opacity-0'}`}
+          className="w-4 h-4 text-[#89A8B2]/50 mt-1"
           fill="none"
           stroke="currentColor"
-          strokeWidth="3"
+          strokeWidth="2.5"
           viewBox="0 0 24 24"
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
