@@ -1,5 +1,6 @@
 import FlowingMenu from './FlowingMenu';
 import asepriteIcon from '/assets/asepriteicon.png';
+import Reveal from '../components/Reveal';
 
 const categories = [
   {
@@ -9,7 +10,7 @@ const categories = [
       { name: 'CSS3', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
       { name: 'JavaScript', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
       { name: 'React', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-      { name: 'Flutter', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg' },        
+      { name: 'Flutter', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg' },
       { name: 'C#', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg' }
     ]
   },
@@ -39,10 +40,22 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="py-20 min-h-[60vh] bg-gradient-to-b from-[#E5E1DA] via-[#F1F0E8] to-white flex flex-col items-center justify-center"
+      className="py-20 md:py-32 px-8 md:px-16 lg:px-24"
+      style={{ background: 'var(--color-bg)' }}
     >
-      <div className="container mx-auto text-center max-w-5xl">
-        <h3 className="text-4xl font-bold mb-10 text-[#181e29] drop-shadow">Skills</h3>
+      <Reveal>
+        <div className="mb-12 md:mb-20">
+          <span className="section-number block mb-4">04 — Skills</span>
+          <h2
+            className="text-3xl md:text-5xl font-bold tracking-tight text-[var(--color-text)]"
+            style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+          >
+            Skills & Tools
+          </h2>
+        </div>
+      </Reveal>
+
+      <div className="max-w-5xl">
         <FlowingMenu items={categories} />
       </div>
     </section>

@@ -1,12 +1,17 @@
 @import "tailwindcss";
 
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
 :root {
   --color-primary: #89A8B2;
   --color-secondary: #B3C8CF;
   --color-accent: #E5E1DA;
-  --color-bg: #181e29;
-  --color-text-dark: #fff;
-  --color-text-light: #fff;
+  --color-bg: #0f1419;
+  --color-bg-light: #161c22;
+  --color-text: #f0ede8;
+  --color-muted: #8a9199;
+  --sidebar-width: 70px;
+  --border-color: rgba(137, 168, 178, 0.15);
 }
 
 html,
@@ -18,131 +23,114 @@ body,
   padding: 0;
   box-sizing: border-box;
   background: var(--color-bg);
-  color: var(--color-text-dark);
+  color: var(--color-text);
   overflow-x: hidden;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-section,
-header,
-footer {
-  width: 100%;
+html {
+  scroll-behavior: smooth;
+}
+
+/* ─── Typography ───────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+}
+
+/* ─── Sidebar layout ───────────────────────────────────────────────────── */
+.portfolio-layout {
+  display: flex;
   min-height: 100vh;
-  box-sizing: border-box;
+}
+
+.portfolio-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
   background: var(--color-bg);
-  overflow-x: hidden;
+  border-right: 1px solid var(--border-color);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
 }
 
-/* Responsive typography */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2.5em;
-  }
-
-  h2 {
-    font-size: 2em;
-  }
-
-  h3 {
-    font-size: 1.75em;
-  }
-
-  p {
-    font-size: 1em;
-  }
+.portfolio-content {
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  border-left: 1px solid var(--border-color);
+  position: relative;
 }
 
-/* Color-changing animation */
-@keyframes color-change {
-  0% {
-    color: var(--color-primary);
-  }
-
-  25% {
-    color: var(--color-secondary);
-  }
-
-  50% {
-    color: var(--color-accent);
-  }
-
-  75% {
-    color: var(--color-primary);
-  }
-
-  100% {
-    color: var(--color-primary);
-  }
+/* Content border glow */
+.portfolio-content::before {
+  content: '';
+  position: fixed;
+  left: var(--sidebar-width);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--color-primary), var(--color-secondary), transparent);
+  z-index: 101;
+  opacity: 0.5;
 }
 
-.animate-color-change {
-  animation: color-change 5s infinite;
+/* ─── Sidebar nav rotated ──────────────────────────────────────────────── */
+.sidebar-nav-link {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  text-decoration: none;
+  padding: 12px 0;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: color 0.3s ease;
+  position: relative;
 }
 
-/* Fade-in animation for intro overlay */
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+.sidebar-nav-link:hover {
+  color: var(--color-primary);
 }
 
-.animate-fade-in {
-  animation: fade-in 0.5s ease-in-out both;
+.sidebar-nav-link.active {
+  color: var(--color-primary);
 }
 
-/* Fade-out animation for intro overlay */
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
+.sidebar-nav-link.active::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-primary);
 }
 
-.animate-fade-out {
-  animation: fade-out 0.5s ease-in-out both;
-}
-
-@keyframes soft-bounce {
-
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 0.7;
-  }
-
-  50% {
-    transform: translateY(12px);
-    opacity: 1;
-  }
-}
-
-.animate-soft-bounce {
-  animation: soft-bounce 1.6s infinite cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-marquee {
-  animation: marquee 18s linear infinite;
+/* ─── Section number labels ────────────────────────────────────────────── */
+.section-number {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 /* ─── Custom Cursor ──────────────────────────────────────────────────── */
 @media (pointer: fine) {
-
   body.has-custom-cursor,
   body.has-custom-cursor * {
     cursor: none !important;
@@ -155,7 +143,7 @@ footer {
   left: 0;
   width: 8px;
   height: 8px;
-  background: #89A8B2;
+  background: var(--color-primary);
   border-radius: 50%;
   z-index: 9999;
   pointer-events: none;
@@ -173,115 +161,72 @@ footer {
   pointer-events: none;
 }
 
-/* ─── Typewriter cursor (used in Intro & Hero) ───────────────────────── */
+/* ─── Typewriter cursor ───────────────────────────────────────────────── */
 @keyframes termCursor {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
-/* ─── Hero floating gradient blobs ──────────────────────────────────── */
-@keyframes heroFloat1 {
-
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-
-  25% {
-    transform: translate(30px, -20px) scale(1.05);
-  }
-
-  50% {
-    transform: translate(-15px, -40px) scale(0.95);
-  }
-
-  75% {
-    transform: translate(-25px, 10px) scale(1.03);
-  }
+/* ─── Reveal animation ─────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes heroFloat2 {
-
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-
-  33% {
-    transform: translate(-25px, 25px) scale(1.08);
-  }
-
-  66% {
-    transform: translate(20px, -15px) scale(0.92);
-  }
+/* ─── Hero floating avatar ─────────────────────────────────────────────── */
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 }
 
-@keyframes heroFloat3 {
-
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-
-  20% {
-    transform: translate(15px, 20px) scale(1.04);
-  }
-
-  40% {
-    transform: translate(-20px, -10px) scale(0.96);
-  }
-
-  60% {
-    transform: translate(10px, -30px) scale(1.06);
-  }
-
-  80% {
-    transform: translate(-10px, 15px) scale(0.98);
-  }
-}
-
-/* ─── Hero avatar 3D float ──────────────────────────────────────────── */
-@keyframes heroAvatar {
-
-  0%,
-  100% {
-    transform: perspective(800px) rotateY(0deg) rotateX(0deg) translateY(0);
-  }
-
-  25% {
-    transform: perspective(800px) rotateY(6deg) rotateX(-3deg) translateY(-12px);
-  }
-
-  50% {
-    transform: perspective(800px) rotateY(-4deg) rotateX(4deg) translateY(-6px);
-  }
-
-  75% {
-    transform: perspective(800px) rotateY(3deg) rotateX(-2deg) translateY(-14px);
-  }
-}
-
-/* ─── Mouse scroll dot ──────────────────────────────────────────────── */
+/* ─── Scroll dot ───────────────────────────────────────────────────────── */
 @keyframes scrollDot {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(12px); opacity: 0.3; }
+  100% { transform: translateY(0); opacity: 1; }
+}
 
-  50% {
-    transform: translateY(12px);
-    opacity: 0.3;
+/* ─── Responsive: hide sidebar on mobile ───────────────────────────────── */
+@media (max-width: 768px) {
+  .portfolio-sidebar {
+    display: none;
   }
+  .portfolio-content {
+    margin-left: 0;
+    width: 100%;
+  }
+  .portfolio-content::before {
+    display: none;
+  }
+}
 
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+/* ─── Scrollbar styling ────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 3px;
+  opacity: 0.5;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
+
+/* ─── Project card hover ───────────────────────────────────────────────── */
+.project-card-image {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.project-card:hover .project-card-image {
+  transform: scale(1.03);
+}
+
+/* ─── Button base ──────────────────────────────────────────────────────── */
+button:focus,
+button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }

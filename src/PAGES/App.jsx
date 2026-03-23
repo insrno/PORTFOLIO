@@ -3,11 +3,13 @@ import Intro from './Intro';
 import Header from './Header';
 import Hero from './Hero';
 import About from './About';
+import Experience from './Experience';
 import Skills from './Skills';
 import Projects from './Projects';
 import ProjectDetails from './ProjectDetails';
 import Footer from './Footer';
 import CustomCursor from '../components/CustomCursor';
+import '../DESIGN/App.css';
 
 function App() {
   return (
@@ -16,13 +18,16 @@ function App() {
       <Routes>
         <Route path="/" element={<Intro />} />
         <Route path="/portfolio" element={
-          <div className="bg-[var(--color-bg)] text-[var(--color-primary)] font-sans">
+          <div className="portfolio-layout">
             <Header />
-            <Hero />
-            <About />
-            <Skills />
-            <Projects />
-            <Footer />
+            <main className="portfolio-content">
+              <Hero />
+              <Projects />
+              <Experience />
+              <About />
+              <Skills />
+              <Footer />
+            </main>
           </div>
         } />
         <Route path="/projects/:projectId" element={<ProjectDetails />} />

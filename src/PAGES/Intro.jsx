@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 const BOOT_LINES = [
   { prefix: '→', text: ' Initializing portfolio...', color: '#89A8B2' },
-  { prefix: '✓', text: ' christian-serrano loaded successfully', color: '#3a7d5e' },
-  { prefix: '→', text: ' Skills: React · Godot · Flutter · Firebase', color: '#89A8B2' },
-  { prefix: '✓', text: ' Projects built: 3', color: '#3a7d5e' },
-  { prefix: '→', text: ' Location: Caloocan City, Philippines', color: '#89A8B2' },
-  { prefix: '✓', text: ' Status: Open to new opportunities', color: '#3a7d5e' },
-  { prefix: '$', text: ' Ready. Press enter to explore.', color: '#4f7fa8' },
+  { prefix: '✓', text: ' christian-serrano loaded successfully', color: '#89A8B2' },
+  { prefix: '→', text: ' Skills: React · Godot · Flutter · Firebase', color: '#8a9199' },
+  { prefix: '✓', text: ' Projects built: 3', color: '#89A8B2' },
+  { prefix: '→', text: ' Location: Caloocan City, Philippines', color: '#8a9199' },
+  { prefix: '✓', text: ' Status: Open to new opportunities', color: '#89A8B2' },
+  { prefix: '$', text: ' Ready. Press enter to explore.', color: '#B3C8CF' },
 ];
 
 function Intro() {
@@ -51,20 +51,24 @@ function Intro() {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-b from-[#E5E1DA] via-[#F1F0E8] to-white transition-opacity duration-500 ${
+      className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-500 ${
         fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
+      style={{ background: 'var(--color-bg, #0f1419)' }}
     >
       <div className="w-full max-w-xl mx-4">
         {/* Terminal window */}
         <div
-          className="rounded-xl overflow-hidden shadow-xl"
-          style={{ border: '1px solid #D1CAC0' }}
+          className="overflow-hidden"
+          style={{ border: '1px solid rgba(137, 168, 178, 0.2)' }}
         >
           {/* Title bar */}
           <div
-            className="flex items-center gap-2 px-4 py-2.5 bg-[#E5E1DA]"
-            style={{ borderBottom: '1px solid #D1CAC0' }}
+            className="flex items-center gap-2 px-4 py-2.5"
+            style={{
+              background: 'var(--color-bg-light, #161c22)',
+              borderBottom: '1px solid rgba(137, 168, 178, 0.15)',
+            }}
           >
             <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
             <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
@@ -73,8 +77,11 @@ function Intro() {
           </div>
 
           {/* Terminal body */}
-          <div className="p-5 bg-white/70 font-mono text-sm min-h-[240px]">
-            <p className="text-[#aaa] text-xs mb-3">
+          <div
+            className="p-5 font-mono text-sm min-h-[240px]"
+            style={{ background: 'var(--color-bg, #0f1419)' }}
+          >
+            <p className="text-[#555] text-xs mb-3">
               Last login: {new Date().toDateString()} on ttys000
             </p>
 
@@ -104,19 +111,29 @@ function Intro() {
 
         {/* Enter button */}
         {showButton && (
-          <div className="mt-6 flex justify-center" style={{ animation: 'introFadeUp 0.4s ease both' }}>
+          <div className="mt-6 flex justify-center" style={{ animation: 'fadeUp 0.4s ease both' }}>
             <button
               onClick={handleEnter}
-              className="px-8 py-3 font-mono font-semibold rounded-full transition-all duration-200 hover:scale-105 active:scale-95 text-white"
+              className="group px-8 py-3 font-mono font-semibold transition-all duration-300 hover:translate-y-[-2px]"
               style={{
-                background: 'linear-gradient(135deg, #89A8B2, #B3C8CF)',
-                border: '1px solid #B3C8CF',
-                boxShadow: '0 4px 20px rgba(137,168,178,0.35)',
+                background: 'transparent',
+                border: '1px solid rgba(137, 168, 178, 0.3)',
+                color: '#8a9199',
               }}
-              onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 6px 28px rgba(137,168,178,0.55)')}
-              onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 4px 20px rgba(137,168,178,0.35)')}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = '#89A8B2';
+                e.currentTarget.style.color = '#89A8B2';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'rgba(137, 168, 178, 0.3)';
+                e.currentTarget.style.color = '#8a9199';
+              }}
             >
-              ./enter_portfolio.sh
+              <span className="flex items-center gap-2">
+                <span className="text-[#89A8B2]">$</span>
+                <span>./enter_portfolio.sh</span>
+                <span className="text-[#89A8B2] transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </span>
             </button>
           </div>
         )}
@@ -127,7 +144,7 @@ function Intro() {
           0%, 100% { opacity: 1; }
           50% { opacity: 0; }
         }
-        @keyframes introFadeUp {
+        @keyframes fadeUp {
           from { opacity: 0; transform: translateY(10px); }
           to   { opacity: 1; transform: translateY(0); }
         }

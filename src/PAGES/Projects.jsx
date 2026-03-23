@@ -1,108 +1,90 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { projectList } from '../data/projects';
 import Reveal from '../components/Reveal';
 
-const FILTERS = ['All', 'Game Dev', 'Mobile', 'Desktop'];
-
 function Projects() {
   const navigate = useNavigate();
-  const [activeFilter, setActiveFilter] = useState('All');
 
-  const filtered =
-    activeFilter === 'All'
-      ? projectList
-      : projectList.filter(p => p.category === activeFilter);
+  // Filter out 'comingsoon' for main display
+  const displayProjects = projectList.filter(p => p.id !== 'comingsoon');
 
   return (
-    <section id="projects" className="py-12 md:py-20 min-h-screen bg-gradient-to-b from-[#E5E1DA] via-[#F1F0E8] to-white flex flex-col items-center justify-center">
-      <div className="container mx-auto px-4">
-        <Reveal>
-          <div className="text-center mb-8 md:mb-10 relative">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-48 md:w-64 h-48 md:h-64 bg-gradient-to-r from-[#B3C8CF]/20 via-[#89A8B2]/20 to-[#E5E1DA]/20 rounded-full blur-3xl animate-pulse"></div>
-            </div>
-            <h3 className="text-3xl md:text-5xl font-extrabold text-[#89A8B2] mb-4 tracking-tight relative">
-              My Projects
-              <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-12 md:w-16 h-0.5 bg-gradient-to-r from-transparent via-[#89A8B2] to-transparent rounded-full opacity-75"></span>
-            </h3>
-          </div>
-        </Reveal>
+    <section
+      id="projects"
+      className="py-20 md:py-32 px-8 md:px-16 lg:px-24"
+      style={{ background: 'var(--color-bg)' }}
+    >
+      {/* Section header */}
+      <Reveal>
+        <div className="mb-16 md:mb-24">
+          <span className="section-number block mb-4">01 — Selected Work</span>
+          <h2
+            className="text-3xl md:text-5xl font-bold tracking-tight text-[var(--color-text)]"
+            style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+          >
+            Projects
+          </h2>
+        </div>
+      </Reveal>
 
-        {/* Filter tabs */}
-        <Reveal delay={100}>
-          <div className="flex flex-wrap gap-3 justify-center mb-10">
-            {FILTERS.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setActiveFilter(cat)}
-                className={`px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 ${
-                  activeFilter === cat
-                    ? 'bg-[#89A8B2] text-white shadow-lg scale-105'
-                    : 'bg-white/60 text-[#89A8B2] border border-[#89A8B2]/30 hover:border-[#89A8B2] hover:scale-105'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </Reveal>
+      {/* Project cards — vertically stacked, full-width */}
+      <div className="space-y-20 md:space-y-32">
+        {displayProjects.map((project, index) => (
+          <Reveal key={project.id} delay={index * 100}>
+            <article
+              className="project-card group cursor-pointer"
+              onClick={() => navigate(`/projects/${project.id}`)}
+            >
+              {/* Project image — full width */}
+              <div className="relative overflow-hidden mb-8 border border-[var(--border-color)]">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="project-card-image w-full h-[300px] md:h-[450px] lg:h-[500px] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
-          {filtered.map((project, index) => (
-            <Reveal key={project.id} delay={index * 80} direction="scale">
-              <div
-                className={`group relative bg-white/80 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden ${
-                  project.id === 'comingsoon' ? '' : 'cursor-pointer'
-                } border border-[#E5E1DA]/50`}
-                onClick={() => project.id !== 'comingsoon' && navigate(`/projects/${project.id}`)}
-              >
-                {/* Image Container */}
-                <div className="relative h-48 md:h-56 w-full overflow-hidden">
-                  {project.id === 'comingsoon' ? (
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#B3C8CF]/10 to-[#89A8B2]/10">
-                    </div>
-                  ) : (
-                    <>
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </>
-                  )}
-                </div>
-
-                {/* Content Container */}
-                <div className="p-4 md:p-6">
-                  <h4 className="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-[#89A8B2] group-hover:text-[#B3C8CF] transition-colors duration-300">
-                    {project.title || 'Coming Soon'}
-                  </h4>
-                  <p className="text-[#181e29] text-sm md:text-base leading-relaxed mb-3 md:mb-4">
-                    {project.description}
-                  </p>
+              {/* Project info */}
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                <div className="flex-1">
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-3">
                     {project.tags.map((tag, i) => (
                       <span
                         key={i}
-                        className="px-2 md:px-3 py-1 text-xs md:text-sm bg-[#F1F0E8] text-[#89A8B2] rounded-full border border-[#E5E1DA] group-hover:border-[#B3C8CF] transition-colors duration-300"
+                        className="text-xs font-semibold tracking-wider uppercase text-[var(--color-primary)]"
+                        style={{ fontFamily: 'Space Grotesk, sans-serif' }}
                       >
-                        {tag}
+                        {tag}{i < project.tags.length - 1 && <span className="ml-2 text-[var(--color-muted)]">·</span>}
                       </span>
                     ))}
                   </div>
+
+                  <h3
+                    className="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-3 group-hover:text-[var(--color-primary)] transition-colors duration-300"
+                    style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+                  >
+                    {project.title}
+                  </h3>
+                  <p className="text-[var(--color-muted)] text-base md:text-lg leading-relaxed max-w-2xl">
+                    {project.description}
+                  </p>
                 </div>
 
-                {/* Hover Effect Overlay */}
-                {project.id !== 'comingsoon' && (
-                  <div className="absolute inset-0 border-2 border-[#B3C8CF] rounded-2xl md:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                )}
+                {/* Arrow link */}
+                <div className="flex items-center gap-2 text-[var(--color-primary)] text-sm font-semibold tracking-wider uppercase mt-2 md:mt-4 group-hover:translate-x-2 transition-transform duration-300"
+                  style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+                >
+                  More about this project
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
               </div>
-            </Reveal>
-          ))}
-        </div>
+            </article>
+          </Reveal>
+        ))}
       </div>
     </section>
   );
