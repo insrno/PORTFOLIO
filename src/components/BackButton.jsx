@@ -6,16 +6,17 @@ export default function BackButton() {
   return (
     <button
       onClick={() => navigate('/portfolio')}
-      className="fixed bottom-8 right-8 z-50 flex items-center gap-3 px-7 py-3 rounded-full bg-white/30 backdrop-blur-md border-2 border-gradient-to-r from-[#B3C8CF] via-[#89A8B2] to-[#E5E1DA] shadow-2xl text-[#181e29] font-bold text-lg transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-[#B3C8CF]/40 ring-2 ring-[#B3C8CF]/30 hover:bg-[#E5E1DA]/80 group animate-glow"
-      style={{ boxShadow: '0 4px 24px 0 rgba(31, 38, 135, 0.18)' }}
+      className="fixed bottom-8 right-8 z-50 flex items-center gap-3 px-6 py-3 border border-[var(--border-color)] text-[var(--color-text)] font-semibold text-sm tracking-wider uppercase transition-all duration-300 hover:translate-y-[-2px] hover:border-[var(--color-primary)] group"
+      style={{
+        fontFamily: 'Space Grotesk, sans-serif',
+        background: 'var(--color-bg-light)',
+        boxShadow: '0 4px 24px rgba(0,0,0,0.3)',
+      }}
     >
-      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-tr from-[#B3C8CF] via-[#89A8B2] to-[#E5E1DA] shadow-md mr-2">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" stroke="#181e29" className="w-5 h-5">
-          <circle cx="12" cy="12" r="10" strokeOpacity=".5" />
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 8.5L10 12l3.5 3.5" />
-        </svg>
-      </span>
-      <span className="tracking-wide">Back to Projects</span>
+      <svg className="w-4 h-4 text-[var(--color-primary)] group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5m0 0l7 7m-7-7l7-7" />
+      </svg>
+      <span>Back to Projects</span>
     </button>
   );
-} 
+}
