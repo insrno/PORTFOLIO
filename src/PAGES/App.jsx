@@ -30,7 +30,14 @@ function App() {
             </main>
           </div>
         } />
-        <Route path="/projects/:projectId" element={<ProjectDetails />} />
+        <Route path="/projects/:projectId" element={
+          <div className="portfolio-layout">
+            <Header />
+            <main className="portfolio-content">
+              <ProjectDetails />
+            </main>
+          </div>
+        } />
       </Routes>
     </>
   );

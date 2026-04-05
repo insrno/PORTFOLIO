@@ -6,18 +6,27 @@ export default function ImageGallery({ images, title }) {
 
   return (
     <div className="w-full mb-12 overflow-hidden">
-      <h3 className="text-4xl font-extrabold text-[var(--color-primary)] mb-8 text-center tracking-tight animate-fade-in">{title}</h3>
+      <span className="section-number block mb-4">Gallery</span>
+      <h3
+        className="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-8 tracking-tight"
+        style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+      >
+        {title}
+      </h3>
       <div className="relative w-full">
-        <div className="flex gap-8 animate-scroll-x items-center" style={{ animation: 'scrollX 30s linear infinite' }}>
+        <div className="flex gap-6 items-center" style={{ animation: 'scrollX 30s linear infinite' }}>
           {images.map((img) => (
             <button
               key={img.alt}
-              className="overflow-hidden min-w-[320px] max-w-xs transition-transform hover:scale-110 focus:outline-none bg-transparent border-none shadow-none p-0 m-0"
-              style={{ background: 'none' }}
+              className="overflow-hidden min-w-[280px] max-w-xs transition-transform duration-300 hover:scale-105 focus:outline-none bg-transparent border border-[var(--border-color)] p-0 m-0 group"
               onClick={() => { setLightboxImg(img); setLightboxOpen(true); }}
               aria-label={`View ${img.alt} larger`}
             >
-              <img src={img.src} alt={img.alt} className="object-cover w-full h-56 rounded-2xl border-none shadow-xl" style={{ background: 'none' }} />
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="object-cover w-full h-56 transition-transform duration-500 group-hover:scale-[1.03]"
+              />
             </button>
           ))}
         </div>
@@ -40,22 +49,26 @@ export default function ImageGallery({ images, title }) {
               <img
                 src={lightboxImg.src}
                 alt={lightboxImg.alt}
-                className="rounded-2xl shadow-2xl max-h-[80vh] w-auto object-contain border-4 border-[var(--color-secondary)] bg-[var(--color-bg)] animate-lightbox-in"
+                className="shadow-2xl max-h-[80vh] w-auto object-contain border border-[var(--border-color)] animate-lightbox-in"
                 style={{ transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.4s cubic-bezier(0.4,0,0.2,1)' }}
               />
               <button
-                className="absolute top-2 right-2 text-white text-3xl font-bold bg-black/60 rounded-full w-12 h-12 flex items-center justify-center hover:bg-black/80 focus:outline-none z-10 shadow-lg border-2 border-white"
+                className="absolute top-3 right-3 text-[var(--color-muted)] hover:text-[var(--color-text)] text-2xl font-bold bg-[var(--color-bg)]/80 backdrop-blur-sm w-10 h-10 flex items-center justify-center border border-[var(--border-color)] transition-colors duration-200 focus:outline-none z-10"
                 onClick={() => setLightboxOpen(false)}
                 aria-label="Close image preview"
-                style={{ transition: 'background 0.2s, box-shadow 0.2s' }}
               >
                 &times;
               </button>
             </div>
-            <div className="mt-4 text-white text-lg text-center drop-shadow-lg animate-fade-in">{lightboxImg.alt}</div>
+            <div
+              className="mt-4 text-[var(--color-muted)] text-sm tracking-wider uppercase"
+              style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+            >
+              {lightboxImg.alt}
+            </div>
           </div>
         </div>
       )}
     </div>
   );
-} 
+}
