@@ -1,10 +1,10 @@
-import codestacleDirtstage from '/assets/codestacle_dirtstage.png';
-import codestacleLeaderboard from '/assets/codestacle_leaderboard.png';
-import codestacleLevelSelection from '/assets/codestacle_level_selection.png';
-import codestacleOption from '/assets/codestacle_option.png';
-import codestacleQuit from '/assets/codestacle_quit.png';
-import codestacleSignup from '/assets/codestacle_signup_screen.png';
-import codestacleSlums from '/assets/codestacle_slums_stage.png';
+import codestacleDirtstage from '/assets/codestacle/codestacle_dirtstage.png';
+import codestacleLeaderboard from '/assets/codestacle/codestacle_leaderboard.png';
+import codestacleLevelSelection from '/assets/codestacle/codestacle_level_selection.png';
+import codestacleOption from '/assets/codestacle/codestacle_option.png';
+import codestacleQuit from '/assets/codestacle/codestacle_quit.png';
+import codestacleSignup from '/assets/codestacle/codestacle_signup_screen.png';
+import codestacleSlums from '/assets/codestacle/codestacle_slums_stage.png';
 
 export default [
   { src: codestacleDirtstage, alt: 'Dirt Stage UI' },

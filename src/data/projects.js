@@ -1,15 +1,57 @@
-import codestacleImg from '/assets/codestaclestart.png';
-import runiImg from '/assets/Runi the all knowing.png';
-import b01Img from '/assets/b01.png';
+import codestacleImg from '/assets/codestacle/codestaclestart.png';
+import apliaiImg from '/assets/apliai/Screenshot 2026-04-06 032740.png';
+import runiImg from '/assets/codestacle/Runi the all knowing.png';
+import b01Img from '/assets/codestacle/b01.png';
 import chixmounliLogo from '/assets/chixmounli/chixmounlilogo.png';
 import roleSpecificLogo from '/assets/role_specific/role_specific_logo.png';
 
 // Import all gallery images
 import codestacleGallery from './gallery/codestacle';
+import apliaiGallery from './gallery/apliai';
 import chixmounliGallery from './gallery/chixmounli';
 import roleSpecificGallery from './gallery/role_specific';
 
 export const projectList = [
+  {
+    id: 'apliai',
+    title: 'ApliAI',
+    image: apliaiImg,
+    description: 'An AI-powered ATS simulator that evaluates resumes against job descriptions, scores alignment, and returns actionable improvement tips.',
+    tags: ['Laravel', 'AI', 'ATS', 'Resume Analysis'],
+    category: 'Web App',
+    gallery: apliaiGallery,
+    techStack: [
+      { name: 'Laravel 12', icon: '🧩', description: 'Backend Framework' },
+      { name: 'PHP 8.2+', icon: '🐘', description: 'Server Language' },
+      { name: 'Vite', icon: '⚡', description: 'Frontend Tooling' },
+      { name: 'Tailwind CSS', icon: '🎨', description: 'UI Styling' },
+      { name: 'MySQL', icon: '🗄️', description: 'Database' },
+      { name: 'Render', icon: '☁️', description: 'Deployment' }
+    ],
+    details: {
+      overview: 'ApliAI is a resume evaluation platform that parses uploaded PDFs, compares them with job descriptions, and uses configurable AI providers to generate a numeric match score, feedback, ATS keyword coverage, and practical improvement tips.',
+      highlights: [
+        'PDF resume upload with text extraction and parsing',
+        'Job description storage and reusable evaluation workflows',
+        'AI-based scoring with structured strengths, weaknesses, and feedback',
+        'ATS keyword coverage analysis with matched and missing terms',
+        'Runtime selection between Groq, Google Gemini, and OpenAI'
+      ],
+      features: [
+        'Upload and evaluate resumes against stored job descriptions',
+        'Select an AI provider at runtime based on availability and configuration',
+        'Generate actionable improvement tips with priority labels',
+        'Display matched versus missing ATS keywords for fast review',
+        'Use rate limiting on sensitive API routes for safer usage'
+      ],
+      challenges: [
+        'Balancing structured scoring with helpful qualitative feedback',
+        'Keeping AI provider selection flexible while maintaining consistent output',
+        'Handling PDF extraction reliably across different resume formats',
+        'Presenting ATS guidance in a way that is clear rather than overly generic'
+      ]
+    }
+  },
   {
     id: 'codestacle',
     title: 'Codestacle',
