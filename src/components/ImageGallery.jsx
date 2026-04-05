@@ -6,7 +6,7 @@ export default function ImageGallery({ images, title }) {
 
   return (
     <div className="w-full mb-12 overflow-hidden">
-      <h3 className="text-4xl font-extrabold text-[#89A8B2] mb-8 text-center tracking-tight animate-fade-in">{title}</h3>
+      <h3 className="text-4xl font-extrabold text-[var(--color-primary)] mb-8 text-center tracking-tight animate-fade-in">{title}</h3>
       <div className="relative w-full">
         <div className="flex gap-8 animate-scroll-x items-center" style={{ animation: 'scrollX 30s linear infinite' }}>
           {images.map((img) => (
@@ -40,7 +40,7 @@ export default function ImageGallery({ images, title }) {
               <img
                 src={lightboxImg.src}
                 alt={lightboxImg.alt}
-                className="rounded-2xl shadow-2xl max-h-[80vh] w-auto object-contain border-4 border-[#B3C8CF] bg-white animate-lightbox-in"
+                className="rounded-2xl shadow-2xl max-h-[80vh] w-auto object-contain border-4 border-[var(--color-secondary)] bg-[var(--color-bg)] animate-lightbox-in"
                 style={{ transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.4s cubic-bezier(0.4,0,0.2,1)' }}
               />
               <button

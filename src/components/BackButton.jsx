@@ -6,11 +6,11 @@ export default function BackButton() {
   return (
     <button
       onClick={() => navigate('/portfolio')}
-      className="fixed bottom-8 right-8 z-50 flex items-center gap-3 px-7 py-3 rounded-full bg-white/30 backdrop-blur-md border-2 border-gradient-to-r from-[#B3C8CF] via-[#89A8B2] to-[#E5E1DA] shadow-2xl text-[#181e29] font-bold text-lg transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-[#B3C8CF]/40 ring-2 ring-[#B3C8CF]/30 hover:bg-[#E5E1DA]/80 group animate-glow"
-      style={{ boxShadow: '0 4px 24px 0 rgba(31, 38, 135, 0.18)' }}
+      className="fixed bottom-8 right-8 z-50 flex items-center gap-3 px-7 py-3 rounded-full bg-[var(--color-bg-light)]/85 backdrop-blur-md border border-[var(--border-color)] shadow-2xl text-[var(--color-text)] font-bold text-lg transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-[var(--color-primary)]/40 ring-1 ring-[var(--color-primary)]/25 hover:bg-[var(--color-bg-light)] group animate-glow"
+      style={{ boxShadow: '0 4px 24px 0 rgba(0, 0, 0, 0.35)' }}
     >
-      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-tr from-[#B3C8CF] via-[#89A8B2] to-[#E5E1DA] shadow-md mr-2">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" stroke="#181e29" className="w-5 h-5">
+      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-tr from-[var(--color-secondary)] via-[var(--color-primary)] to-[var(--color-accent)] shadow-md mr-2">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" stroke="var(--color-bg)" className="w-5 h-5">
           <circle cx="12" cy="12" r="10" strokeOpacity=".5" />
           <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 8.5L10 12l3.5 3.5" />
         </svg>

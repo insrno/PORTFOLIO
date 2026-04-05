@@ -16,17 +16,17 @@ export default function ProjectDetails() {
   if (!project) return <div className="text-center py-20">Project not found.</div>;
 
   return (
-    <section className="relative py-20 min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#B3C8CF] via-[#E5E1DA] to-[#F1F0E8] overflow-x-hidden animate-bg-pan">
+    <section className="relative py-20 min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[var(--color-bg)] via-[var(--color-bg-light)] to-[color-mix(in_srgb,var(--color-bg-light)_78%,var(--color-primary)_22%)] overflow-x-hidden animate-bg-pan">
       <BackButton />
       
-      <div className="w-full max-w-6xl bg-white/30 backdrop-blur-lg rounded-3xl shadow-2xl px-6 md:px-16 py-12 flex flex-col items-center border border-[#B3C8CF]/40" style={{ boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.18)' }}>
+      <div className="w-full max-w-6xl bg-white/5 backdrop-blur-lg rounded-3xl shadow-2xl px-6 md:px-16 py-12 flex flex-col items-center border border-[var(--border-color)]" style={{ boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.35)' }}>
         {/* Main showcase image */}
-        <div className="w-full h-96 flex items-center justify-center mb-10 bg-[#E5E1DA]/70 rounded-2xl border-2 border-[#B3C8CF] overflow-hidden shadow-2xl p-0 transition-transform duration-500 hover:scale-105">
+        <div className="w-full h-96 flex items-center justify-center mb-10 bg-[var(--color-bg-light)]/90 rounded-2xl border-2 border-[var(--border-color)] overflow-hidden shadow-2xl p-0 transition-transform duration-500 hover:scale-105">
           <img src={project.image} alt={`${project.title} Main Showcase`} className="object-cover w-full h-full drop-shadow-2xl" />
         </div>
 
         {/* Divider */}
-        <div className="w-2/3 h-1 bg-gradient-to-r from-[#B3C8CF] via-[#89A8B2] to-[#E5E1DA] rounded-full mb-12 animate-pulse" />
+        <div className="w-2/3 h-1 bg-gradient-to-r from-[var(--color-secondary)] via-[var(--color-primary)] to-[var(--color-accent)] rounded-full mb-12 animate-pulse" />
 
         {/* Gallery */}
         {project.gallery && (
@@ -48,23 +48,23 @@ export default function ProjectDetails() {
         )}
 
         {/* Project Title and Description */}
-        <h2 className="text-5xl font-extrabold mb-8 text-[#89A8B2] drop-shadow-lg text-center tracking-tight animate-fade-in-slow">{project.title}</h2>
-        <p className="text-[#181e29] mb-10 text-center text-2xl font-medium max-w-3xl animate-fade-in-slow">{project.description}</p>
+        <h2 className="text-5xl font-extrabold mb-8 text-[var(--color-primary)] drop-shadow-lg text-center tracking-tight animate-fade-in-slow">{project.title}</h2>
+        <p className="text-[var(--color-text)] mb-10 text-center text-2xl font-medium max-w-3xl animate-fade-in-slow">{project.description}</p>
 
         {/* Project Details */}
         <div className="w-full text-left mb-8 max-w-4xl">
-          <h3 className="text-3xl font-bold text-[#89A8B2] mb-4 animate-fade-in">Project Overview</h3>
-          <p className="text-[#181e29] mb-6 text-lg animate-fade-in">{project.details.overview}</p>
+          <h3 className="text-3xl font-bold text-[var(--color-primary)] mb-4 animate-fade-in">Project Overview</h3>
+          <p className="text-[var(--color-text)]/90 mb-6 text-lg animate-fade-in">{project.details.overview}</p>
 
           {/* Features/Highlights */}
           {project.details.highlights && (
             <>
-              <h4 className="text-2xl font-semibold text-[#89A8B2] mb-4 animate-fade-in">Highlights</h4>
+              <h4 className="text-2xl font-semibold text-[var(--color-primary)] mb-4 animate-fade-in">Highlights</h4>
               <ul className="space-y-3 mb-8">
                 {project.details.highlights.map((highlight, i) => (
-                  <li key={i} className="flex items-start gap-3 text-[#181e29] text-lg animate-fade-in group">
-                    <span className="flex-shrink-0 w-2 h-2 mt-2.5 rounded-full bg-gradient-to-r from-[#B3C8CF] to-[#89A8B2] group-hover:scale-150 transition-transform duration-300"></span>
-                    <span className="group-hover:text-[#89A8B2] transition-colors duration-300">{highlight}</span>
+                  <li key={i} className="flex items-start gap-3 text-[var(--color-text)]/90 text-lg animate-fade-in group">
+                    <span className="flex-shrink-0 w-2 h-2 mt-2.5 rounded-full bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-primary)] group-hover:scale-150 transition-transform duration-300"></span>
+                    <span className="group-hover:text-[var(--color-secondary)] transition-colors duration-300">{highlight}</span>
                   </li>
                 ))}
               </ul>
@@ -74,12 +74,12 @@ export default function ProjectDetails() {
           {/* Features */}
           {project.details.features && (
             <>
-              <h4 className="text-2xl font-semibold text-[#89A8B2] mb-4 animate-fade-in">Features</h4>
+              <h4 className="text-2xl font-semibold text-[var(--color-primary)] mb-4 animate-fade-in">Features</h4>
               <ul className="space-y-3 mb-8">
                 {project.details.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-3 text-[#181e29] text-lg animate-fade-in group">
-                    <span className="flex-shrink-0 w-2 h-2 mt-2.5 rounded-full bg-gradient-to-r from-[#B3C8CF] to-[#89A8B2] group-hover:scale-150 transition-transform duration-300"></span>
-                    <span className="group-hover:text-[#89A8B2] transition-colors duration-300">{feature}</span>
+                  <li key={i} className="flex items-start gap-3 text-[var(--color-text)]/90 text-lg animate-fade-in group">
+                    <span className="flex-shrink-0 w-2 h-2 mt-2.5 rounded-full bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-primary)] group-hover:scale-150 transition-transform duration-300"></span>
+                    <span className="group-hover:text-[var(--color-secondary)] transition-colors duration-300">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -89,14 +89,14 @@ export default function ProjectDetails() {
           {/* Challenges/Limitations */}
           {(project.details.challenges || project.details.limitations) && (
             <>
-              <h4 className="text-2xl font-semibold text-[#89A8B2] mb-4 animate-fade-in">
+              <h4 className="text-2xl font-semibold text-[var(--color-primary)] mb-4 animate-fade-in">
                 {project.details.challenges ? 'Challenges' : 'Limitations'}
               </h4>
               <ul className="space-y-3">
                 {(project.details.challenges || project.details.limitations).map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-[#181e29] text-lg animate-fade-in group">
-                    <span className="flex-shrink-0 w-2 h-2 mt-2.5 rounded-full bg-gradient-to-r from-[#B3C8CF] to-[#89A8B2] group-hover:scale-150 transition-transform duration-300"></span>
-                    <span className="group-hover:text-[#89A8B2] transition-colors duration-300">{item}</span>
+                  <li key={i} className="flex items-start gap-3 text-[var(--color-text)]/90 text-lg animate-fade-in group">
+                    <span className="flex-shrink-0 w-2 h-2 mt-2.5 rounded-full bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-primary)] group-hover:scale-150 transition-transform duration-300"></span>
+                    <span className="group-hover:text-[var(--color-secondary)] transition-colors duration-300">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -141,18 +141,18 @@ export default function ProjectDetails() {
           to { opacity: 1; transform: scale(1); }
         }
         .animate-glow {
-          box-shadow: 0 0 0 0 #B3C8CF, 0 0 0 0 #89A8B2;
+          box-shadow: 0 0 0 0 var(--color-secondary), 0 0 0 0 var(--color-primary);
           animation: glowPulse 2.2s infinite cubic-bezier(0.4,0,0.2,1);
         }
         @keyframes glowPulse {
           0% {
-            box-shadow: 0 0 0 0 #B3C8CF, 0 0 0 0 #89A8B2;
+            box-shadow: 0 0 0 0 var(--color-secondary), 0 0 0 0 var(--color-primary);
           }
           50% {
-            box-shadow: 0 0 16px 6px #B3C8CF55, 0 0 32px 12px #89A8B255;
+            box-shadow: 0 0 16px 6px color-mix(in srgb, var(--color-secondary) 35%, transparent), 0 0 32px 12px color-mix(in srgb, var(--color-primary) 35%, transparent);
           }
           100% {
-            box-shadow: 0 0 0 0 #B3C8CF, 0 0 0 0 #89A8B2;
+            box-shadow: 0 0 0 0 var(--color-secondary), 0 0 0 0 var(--color-primary);
           }
         }
       `}</style>
