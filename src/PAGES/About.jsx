@@ -53,12 +53,12 @@ function About() {
         <div>
           <Reveal delay={100}>
             <p className="text-[var(--color-muted)] text-base md:text-lg leading-relaxed mb-6">
-              Hi! I'm Christian Serrano, 23 years old and a 4th year student taking Bachelor of Science in Computer Science at the University of Caloocan City. I may not be the best coder or designer, but I'm always willing to learn and improve.
+              Hi, I'm Christian Serrano, a Full-Stack Developer based in Metro Manila with a B.S. in Computer Science from the University of Caloocan City. I specialize in building robust web and mobile applications using Laravel, React Native, and PHP.
             </p>
           </Reveal>
           <Reveal delay={150}>
             <p className="text-[var(--color-muted)] text-base md:text-lg leading-relaxed mb-10">
-              My passion is more on the functional side — building, tinkering, and making sure things work. I enjoy exploring front-end development, but I'm not afraid to get my hands dirty with computer hardware, troubleshooting, and experimenting with new software.
+              I am a problem-solver who enjoys the technical grit—from hardware troubleshooting and IoT integrations to developing AI-powered backend systems. I build functional, efficient, and scalable solutions.
             </p>
           </Reveal>
           <Reveal delay={200}>
