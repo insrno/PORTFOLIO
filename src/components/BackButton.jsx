@@ -6,7 +6,7 @@ export default function BackButton() {
   return (
     <button
       onClick={() => navigate('/portfolio')}
-      className="fixed bottom-8 right-8 z-50 flex items-center gap-3 px-7 py-3 rounded-full bg-[var(--color-bg-light)]/85 backdrop-blur-md border border-[var(--border-color)] shadow-2xl text-[var(--color-text)] font-bold text-lg transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-[var(--color-primary)]/40 ring-1 ring-[var(--color-primary)]/25 hover:bg-[var(--color-bg-light)] group animate-glow"
+      className="fixed bottom-8 right-8 z-50 flex items-center gap-3 px-7 py-3 rounded-full bg-[var(--color-bg-light)]/85 backdrop-blur-md border border-[var(--border-color)] shadow-2xl text-[var(--color-text)] font-bold text-lg transition-all duration-200 focus:outline-none hover:bg-[var(--color-bg-light)] group"
       style={{ boxShadow: '0 4px 24px 0 rgba(0, 0, 0, 0.35)' }}
     >
       <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-tr from-[var(--color-secondary)] via-[var(--color-primary)] to-[var(--color-accent)] shadow-md mr-2">
@@ -15,7 +15,7 @@ export default function BackButton() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 8.5L10 12l3.5 3.5" />
         </svg>
       </span>
-      <span className="tracking-wide">Back to Projects</span>
+      <span className="tracking-wide">Back to Portfolio</span>
     </button>
   );
 } 

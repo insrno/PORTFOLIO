@@ -4,7 +4,7 @@ import Reveal from '../components/Reveal';
 const EXPERIENCES = [
   {
     company: 'URBANWATCH',
-    role: 'Front End Lead / Software Engineer',
+    role: 'Full Stack Developer',
     period: '2025 — Present',
     accent: '#89A8B2',
     bullets: [
