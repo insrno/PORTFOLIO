@@ -5,11 +5,12 @@ const BOOT_LINES = [
   { prefix: '→', text: ' Initializing portfolio...', color: '#89A8B2' },
   { prefix: '✓', text: ' christian-serrano loaded successfully', color: '#89A8B2' },
   { prefix: '→', text: ' Skills: React · Godot · Flutter · Firebase', color: '#8a9199' },
-  { prefix: '✓', text: ' Projects built: 3', color: '#89A8B2' },
   { prefix: '→', text: ' Location: Caloocan City, Philippines', color: '#8a9199' },
   { prefix: '✓', text: ' Status: Open to new opportunities', color: '#89A8B2' },
   { prefix: '$', text: ' Ready. Press enter to explore.', color: '#B3C8CF' },
 ];
+
+const LAST_LOGIN_LINE = 'Last login: Mon Apr 06 2026 on ttys000';
 
 function Intro() {
   const [completedLines, setCompletedLines] = useState([]);
@@ -81,9 +82,7 @@ function Intro() {
             className="p-5 font-mono text-sm min-h-[240px]"
             style={{ background: 'var(--color-bg, #0f1419)' }}
           >
-            <p className="text-[#555] text-xs mb-3">
-              Last login: {new Date().toDateString()} on ttys000
-            </p>
+            <p className="text-[#555] text-xs mb-3">{LAST_LOGIN_LINE}</p>
 
             {completedLines.map((line, i) => (
               <div key={i} className="mb-1.5 leading-relaxed" style={{ color: line.color }}>
