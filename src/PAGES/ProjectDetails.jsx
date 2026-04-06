@@ -57,21 +57,26 @@ export default function ProjectDetails() {
         />
       </div>
 
-      {/* Project description */}
-      <div className="animate-fadeUp mb-16" style={{ animationDelay: '0.15s' }}>
-        <p className="text-[var(--color-muted)] text-lg md:text-xl leading-relaxed max-w-3xl">
-          {project.description}
-        </p>
-      </div>
-
-      {/* Divider */}
-      <div className="w-full h-px bg-[var(--border-color)] mb-16" />
-
-      {/* Gallery */}
-      {project.gallery && (
-        <div className="mb-16 animate-fadeUp" style={{ animationDelay: '0.2s' }}>
+        {/* Categorized Galleries (e.g. UrbanWatch with Web, Citizen, Purok sections) */}
+        {project.galleryCategories ? (
+          <div className="w-full mb-12 space-y-16">
+            {project.galleryCategories.map((category, catIdx) => (
+              <div key={catIdx} className="w-full">
+                {/* Category header */}
+                <div className="text-center mb-2">
+                  <h3 className="text-3xl md:text-4xl font-extrabold text-[var(--color-primary)] tracking-tight animate-fade-in">
+                    {category.title}
+                  </h3>
+                  {category.subtitle && (
+                    <p className="text-[var(--color-muted)] text-sm md:text-base mt-2 animate-fade-in">{category.subtitle}</p>
+                  )}
+                </div>
+                <ImageGallery images={category.images} title="" />
+              </div>
+            ))}
+          </div>
+        ) : project.gallery && (
           <ImageGallery images={project.gallery} title={`${project.title.toUpperCase()} GALLERY`} />
-        </div>
       )}
 
       {/* Characters (if any) */}
@@ -157,6 +162,46 @@ export default function ProjectDetails() {
               ))}
             </ul>
           </>
+        )}
+
+        {/* Research Poster Highlight */}
+        {project.poster && (
+          <div className="w-full mt-16 mb-4 flex flex-col items-center">
+            {/* Section label */}
+            <div className="w-2/3 h-px bg-gradient-to-r from-transparent via-[var(--color-primary)] to-transparent mb-10" />
+            <h3 className="text-3xl md:text-4xl font-extrabold text-[var(--color-primary)] mb-3 text-center tracking-tight animate-fade-in">
+              📄 RESEARCH POSTER
+            </h3>
+            <p className="text-[var(--color-muted)] text-sm md:text-base mb-8 text-center animate-fade-in max-w-2xl">
+              Thesis documentation presented at the University of Caloocan City — Computer Studies Department
+            </p>
+
+            {/* Poster container with glow effect */}
+            <div
+              className="relative w-full max-w-5xl rounded-2xl overflow-hidden border-2 border-[var(--color-primary)]/30 shadow-2xl transition-all duration-500 hover:border-[var(--color-primary)] group cursor-pointer"
+              style={{
+                boxShadow: '0 0 40px -10px color-mix(in srgb, var(--color-primary) 25%, transparent), 0 20px 60px -15px rgba(0,0,0,0.5)'
+              }}
+              onClick={() => window.open(project.poster, '_blank')}
+            >
+              {/* Glow overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-primary)]/10 via-transparent to-[var(--color-primary)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
+              
+              <img
+                src={project.poster}
+                alt={`${project.title} Research Poster`}
+                className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+              />
+
+              {/* Click hint */}
+              <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 flex items-center gap-2">
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                </svg>
+                Click to view full size
+              </div>
+            </div>
+          </div>
         )}
       </div>
 

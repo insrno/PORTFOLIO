@@ -4,14 +4,66 @@ import runiImg from '/assets/codestacle/Runi the all knowing.png';
 import b01Img from '/assets/codestacle/b01.png';
 import chixmounliLogo from '/assets/chixmounli/chixmounlilogo.png';
 import roleSpecificLogo from '/assets/role_specific/role_specific_logo.png';
+import urbanwatchBanner from '/assets/urbanwatch/633779213_1270608638280782_8113609748180483460_n.png';
+import urbanwatchPoster from '/assets/urbanwatch/urbanwatch poster conv 1.png';
 
 // Import all gallery images
 import codestacleGallery from './gallery/codestacle';
 import apliaiGallery from './gallery/apliai';
 import chixmounliGallery from './gallery/chixmounli';
 import roleSpecificGallery from './gallery/role_specific';
+import urbanwatchGallery, { urbanwatchCategories } from './gallery/urbanwatch';
 
 export const projectList = [
+  {
+    id: 'urbanwatch',
+    title: 'UrbanWatch ',
+    image: urbanwatchBanner,
+    poster: urbanwatchPoster,
+    description: 'An AI-powered real-time accident detection and incident concern reporting platform designed for Brgy 176 E, integrating CCTV cameras, YOLOv8n AI models, and IoT sensors for automated emergency response.',
+    tags: ['AI / Computer Vision', 'IoT', 'Laravel', 'React', 'Mobile'],
+    category: 'Full-Stack Platform',
+    gallery: urbanwatchGallery,
+    galleryCategories: urbanwatchCategories,
+    techStack: [
+      { name: 'Laravel 11', icon: '🧩', description: 'Backend Framework' },
+      { name: 'React 18', icon: '⚛️', description: 'Frontend (Inertia.js)' },
+      { name: 'React Native', icon: '📱', description: 'Mobile Apps' },
+      { name: 'Tailwind CSS', icon: '🎨', description: 'UI Styling' },
+      { name: 'MySQL', icon: '🗄️', description: 'Database' },
+      { name: 'YOLOv8n', icon: '🤖', description: 'AI Object Detection' },
+      { name: 'Raspberry Pi', icon: '🍓', description: 'IoT Hardware' },
+      { name: 'WebSockets', icon: '🔌', description: 'Real-time Alerts' },
+      { name: 'AWS S3', icon: '☁️', description: 'Media Storage' },
+      { name: 'DDEV', icon: '🐳', description: 'Dev Environment' }
+    ],
+    details: {
+      overview: 'UrbanWatch is a thesis/capstone project that tackles delayed emergency response in dense urban communities. By combining YOLOv8n-based computer vision on CCTV feeds, IoT sensors (sound, vibration, environmental), and citizen-powered incident reporting into a unified platform, UrbanWatch enables faster detection, quicker validation, and timely response by local authorities in Barangay 176-E, Caloocan City.',
+      highlights: [
+        'AI-driven CCTV monitoring using YOLOv8n for real-time detection of vehicle accidents, fires, floods, and medical emergencies',
+        'IoT sensor integration (INMP44 Sound Sensor, Hall Effect Sensor) with Raspberry Pi for anomaly detection beyond camera visibility',
+        'Three-platform ecosystem: Web Dashboard (BCCMO), Citizen Mobile App, and Purok Leader Mobile App',
+        'Real-time WebSocket-based push notifications for instant alert broadcasting to officials',
+        'Geographic concern mapping with purok boundary visualization and incident clustering',
+        'Evaluation results from 116 respondents rated the system as "Excellent" across all software quality criteria'
+      ],
+      features: [
+        'BCCMO Web Dashboard: Centralized command center for monitoring AI-detected events, managing incidents, publishing barangay updates, and overseeing IoT devices',
+        'Citizen Mobile App: Multi-modal incident reporting (manual text, voice recording, photo/video), live barangay updates, and real-time notification alerts',
+        'Purok Leader Mobile App: Territory-based incident feed, concern validation and verification workflow, map view with purok boundaries, and direct communication with BCCMO',
+        'AI Detection Pipeline: YOLOv8n processes CCTV snapshots triggered by Gemini Flash for incident classification with automated alert generation',
+        'IoT Anomaly Detection: Continuous environmental monitoring with sensor fusion for detecting unusual sound, vibration, or environmental patterns',
+        'Incident Lifecycle Management: Full workflow from detection → validation → response → resolution with status tracking across all platforms'
+      ],
+      challenges: [
+        'Designing a microservices-based three-tier architecture that separates presentation, application, and AI processing layers',
+        'Balancing real-time performance with reliable incident classification to minimize false alarms',
+        'Coordinating data flow between IoT hardware, AI models, and multiple client applications in real-time',
+        'Building an intuitive purok boundary mapping system for accurate geographic incident assignment',
+        'Ensuring reliable push notification delivery with 3.2-second average latency for emergency alerts'
+      ]
+    }
+  },
   {
     id: 'apliai',
     title: 'ApliAI',

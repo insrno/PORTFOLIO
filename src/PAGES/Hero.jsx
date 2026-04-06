@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import resumePDF from '/assets/Christian_Serrano_Resume_V6.pdf';
 
-const ROLES = ['Frontend Developer', 'Game Developer', 'CS Student @ UCC', 'Problem Solver'];
+const ROLES = ['Full Stack Developer', 'Game Developer', 'CS Student @ UCC', 'Problem Solver'];
 
 function TypewriterRole() {
   const [roleIdx, setRoleIdx] = useState(0);

@@ -6,17 +6,16 @@ export default function BackButton() {
   return (
     <button
       onClick={() => navigate('/portfolio')}
-      className="fixed bottom-8 right-8 z-50 flex items-center gap-3 px-6 py-3 border border-[var(--border-color)] text-[var(--color-text)] font-semibold text-sm tracking-wider uppercase transition-all duration-300 hover:translate-y-[-2px] hover:border-[var(--color-primary)] group"
-      style={{
-        fontFamily: 'Space Grotesk, sans-serif',
-        background: 'var(--color-bg-light)',
-        boxShadow: '0 4px 24px rgba(0,0,0,0.3)',
-      }}
+      className="fixed bottom-8 right-8 z-50 flex items-center gap-3 px-7 py-3 rounded-full bg-[var(--color-bg-light)]/85 backdrop-blur-md border border-[var(--border-color)] shadow-2xl text-[var(--color-text)] font-bold text-lg transition-all duration-200 focus:outline-none hover:bg-[var(--color-bg-light)] group"
+      style={{ boxShadow: '0 4px 24px 0 rgba(0, 0, 0, 0.35)' }}
     >
-      <svg className="w-4 h-4 text-[var(--color-primary)] group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5m0 0l7 7m-7-7l7-7" />
-      </svg>
-      <span>Back to Projects</span>
+      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-tr from-[var(--color-secondary)] via-[var(--color-primary)] to-[var(--color-accent)] shadow-md mr-2">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.2" stroke="var(--color-bg)" className="w-5 h-5">
+          <circle cx="12" cy="12" r="10" strokeOpacity=".5" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 8.5L10 12l3.5 3.5" />
+        </svg>
+      </span>
+      <span className="tracking-wide">Back to Portfolio</span>
     </button>
   );
 }
