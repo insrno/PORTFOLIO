@@ -77,7 +77,6 @@ export default function ProjectDetails() {
           </div>
         ) : project.gallery && (
           <ImageGallery images={project.gallery} title={`${project.title.toUpperCase()} GALLERY`} />
-        </div>
       )}
 
       {/* Characters (if any) */}

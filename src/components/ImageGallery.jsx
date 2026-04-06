@@ -83,10 +83,26 @@ export default function ImageGallery({ images, title }) {
   useEffect(() => {
     if (lightboxOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.classList.add('lightbox-open');
     } else {
       document.body.style.overflow = '';
+      document.body.classList.remove('lightbox-open');
     }
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      document.body.style.overflow = '';
+      document.body.classList.remove('lightbox-open');
+    };
+  }, [lightboxOpen]);
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setLightboxOpen(false);
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
   }, [lightboxOpen]);
 
   const handleImageClick = (img) => {
@@ -105,19 +121,19 @@ export default function ImageGallery({ images, title }) {
       role="dialog"
       aria-modal="true"
     >
+      <button
+        className="lightbox-close"
+        onClick={() => setLightboxOpen(false)}
+        aria-label="Close image preview"
+      >
+        Close
+      </button>
       <div className="lightbox-content" onClick={e => e.stopPropagation()}>
         <img
           src={lightboxImg.src}
           alt={lightboxImg.alt}
           className="lightbox-image"
         />
-        <button
-          className="lightbox-close"
-          onClick={() => setLightboxOpen(false)}
-          aria-label="Close image preview"
-        >
-          &times;
-        </button>
         <div className="lightbox-caption">{lightboxImg.alt}</div>
       </div>
     </div>,
@@ -215,6 +231,17 @@ export default function ImageGallery({ images, title }) {
           backdrop-filter: blur(12px);
           animation: lightbox-fade-in 0.25s ease;
         }
+
+        body.has-custom-cursor.lightbox-open,
+        body.has-custom-cursor.lightbox-open * {
+          cursor: auto !important;
+        }
+
+        body.lightbox-open .custom-cursor-dot,
+        body.lightbox-open .custom-cursor-ring {
+          opacity: 0;
+        }
+
         .lightbox-content {
           position: relative;
           display: flex;
@@ -237,26 +264,36 @@ export default function ImageGallery({ images, title }) {
         }
         .lightbox-close {
           position: absolute;
-          top: 0.5rem;
-          right: 0.5rem;
+          top: max(1rem, env(safe-area-inset-top));
+          right: max(1rem, env(safe-area-inset-right));
           color: white;
-          font-size: 1.75rem;
-          font-weight: bold;
-          background: rgba(0, 0, 0, 0.6);
-          border: 2px solid rgba(255, 255, 255, 0.4);
-          border-radius: 50%;
-          width: 2.5rem;
-          height: 2.5rem;
+          font-size: 0.75rem;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          font-family: 'Space Grotesk', sans-serif;
+          background: rgba(15, 20, 25, 0.7);
+          border: 1px solid rgba(179, 200, 207, 0.6);
+          border-radius: 999px;
+          min-width: 5.5rem;
+          height: 2.25rem;
+          padding: 0 0.85rem;
           display: flex;
           align-items: center;
           justify-content: center;
-          cursor: pointer;
-          transition: all 0.2s;
-          z-index: 10;
+          transition: all 0.2s ease;
+          backdrop-filter: blur(8px);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+          z-index: 11;
         }
         .lightbox-close:hover {
-          background: rgba(0, 0, 0, 0.8);
-          transform: scale(1.1);
+          background: rgba(137, 168, 178, 0.22);
+          border-color: var(--color-primary);
+          transform: translateY(-1px);
+        }
+        .lightbox-close:focus-visible {
+          outline: 2px solid var(--color-primary);
+          outline-offset: 2px;
         }
         .lightbox-caption {
           margin-top: 1rem;

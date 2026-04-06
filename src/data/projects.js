@@ -17,7 +17,7 @@ import urbanwatchGallery, { urbanwatchCategories } from './gallery/urbanwatch';
 export const projectList = [
   {
     id: 'urbanwatch',
-    title: 'UrbanWatch 🚨',
+    title: 'UrbanWatch ',
     image: urbanwatchBanner,
     poster: urbanwatchPoster,
     description: 'An AI-powered real-time accident detection and incident concern reporting platform designed for Brgy 176 E, integrating CCTV cameras, YOLOv8n AI models, and IoT sensors for automated emergency response.',
