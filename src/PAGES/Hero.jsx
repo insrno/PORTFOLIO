@@ -72,8 +72,8 @@ function Hero() {
         </h1>
 
         <p className="text-lg md:text-xl text-[var(--color-muted)] leading-relaxed max-w-2xl mb-10">
-          Hi, I'm <span className="text-[var(--color-text)] font-semibold">Christian Serrano</span> — a CS student and frontend developer. 
-          Not a coding ninja yet, but I've got coffee, curiosity, and Ctrl+Z.
+          Hi, I'm <span className="text-[var(--color-text)] font-semibold">Christian Serrano</span> — a Full-Stack Developer with a fresh CS degree.
+          Armed with coffee and a drive to build reliable, impactful software.
         </p>
 
         <div className="flex flex-wrap gap-4">
