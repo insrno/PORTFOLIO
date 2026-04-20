@@ -56,51 +56,72 @@ function Hero() {
       className="relative w-full min-h-screen flex flex-col justify-center px-8 md:px-16 lg:px-24 py-20"
       style={{ background: 'var(--color-bg)' }}
     >
-      {/* Large hero tagline */}
-      <div className="max-w-4xl">
-        <div className="mb-6">
-          <TypewriterRole />
+      {/* Two-column hero layout */}
+      <div className="hero-grid">
+        {/* Left: Text content */}
+        <div className="hero-text">
+          <div className="mb-6">
+            <TypewriterRole />
+          </div>
+
+          <h1
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-8"
+            style={{ fontFamily: 'Space Grotesk, sans-serif', color: 'var(--color-text)' }}
+          >
+            Building things that{' '}
+            <span className="text-[var(--color-primary)]">work</span>,{' '}
+            one line of code at a time.
+          </h1>
+
+          <p className="text-lg md:text-xl text-[var(--color-muted)] leading-relaxed max-w-2xl mb-10">
+            Hi, I'm <span className="text-[var(--color-text)] font-semibold">Christian Serrano</span> — a Full-Stack Developer with a fresh CS degree.
+            Armed with coffee and a drive to build reliable, impactful software.
+          </p>
+
+          <div className="flex flex-wrap gap-4">
+            <button
+              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-8 py-3 font-semibold text-sm tracking-wider uppercase transition-all duration-300 hover:translate-y-[-2px]"
+              style={{
+                fontFamily: 'Space Grotesk, sans-serif',
+                background: 'var(--color-primary)',
+                color: 'var(--color-bg)',
+                border: 'none',
+              }}
+            >
+              View My Works
+            </button>
+            <button
+              onClick={() => setShowResume(true)}
+              className="px-8 py-3 font-semibold text-sm tracking-wider uppercase transition-all duration-300 hover:translate-y-[-2px]"
+              style={{
+                fontFamily: 'Space Grotesk, sans-serif',
+                background: 'transparent',
+                color: 'var(--color-primary)',
+                border: '1px solid var(--color-primary)',
+              }}
+            >
+              See Resume
+            </button>
+          </div>
         </div>
 
-        <h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-8"
-          style={{ fontFamily: 'Space Grotesk, sans-serif', color: 'var(--color-text)' }}
-        >
-          Building things that{' '}
-          <span className="text-[var(--color-primary)]">work</span>,{' '}
-          one line of code at a time.
-        </h1>
-
-        <p className="text-lg md:text-xl text-[var(--color-muted)] leading-relaxed max-w-2xl mb-10">
-          Hi, I'm <span className="text-[var(--color-text)] font-semibold">Christian Serrano</span> — a Full-Stack Developer with a fresh CS degree.
-          Armed with coffee and a drive to build reliable, impactful software.
-        </p>
-
-        <div className="flex flex-wrap gap-4">
-          <button
-            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-3 font-semibold text-sm tracking-wider uppercase transition-all duration-300 hover:translate-y-[-2px]"
-            style={{
-              fontFamily: 'Space Grotesk, sans-serif',
-              background: 'var(--color-primary)',
-              color: 'var(--color-bg)',
-              border: 'none',
-            }}
-          >
-            View My Works
-          </button>
-          <button
-            onClick={() => setShowResume(true)}
-            className="px-8 py-3 font-semibold text-sm tracking-wider uppercase transition-all duration-300 hover:translate-y-[-2px]"
-            style={{
-              fontFamily: 'Space Grotesk, sans-serif',
-              background: 'transparent',
-              color: 'var(--color-primary)',
-              border: '1px solid var(--color-primary)',
-            }}
-          >
-            See Resume
-          </button>
+        {/* Right: Portrait photo */}
+        <div className="hero-portrait">
+          <div className="hero-portrait-wrapper">
+            {/* Animated glow ring behind the image */}
+            <div className="hero-portrait-glow" />
+            {/* The actual photo */}
+            <div className="hero-portrait-image-container">
+              <img
+                src="/assets/SERRANO CHRISTIAN (2).JPG"
+                alt="Christian Serrano — Full-Stack Developer"
+                className="hero-portrait-img"
+              />
+              {/* Subtle gradient overlay for blend effect */}
+              <div className="hero-portrait-overlay" />
+            </div>
+          </div>
         </div>
       </div>
 

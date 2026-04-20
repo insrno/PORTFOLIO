@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function Header() {
   const [activeSection, setActiveSection] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isPortfolioPage = location.pathname === '/portfolio';
 
   // IntersectionObserver: auto-highlight nav item for visible section
   useEffect(() => {
+    if (!isPortfolioPage) return;
     const sections = ['hero', 'projects', 'experience', 'about', 'contact'];
     const observers = sections.map(id => {
       const el = document.getElementById(id);
@@ -17,10 +22,28 @@ function Header() {
       return obs;
     });
     return () => observers.forEach(obs => obs?.disconnect());
-  }, []);
+  }, [isPortfolioPage]);
+
+  // Handle scroll-on-arrival after navigating from another page
+  useEffect(() => {
+    if (isPortfolioPage && location.state?.scrollTo) {
+      const section = location.state.scrollTo;
+      // Small delay to let the page render before scrolling
+      const timer = setTimeout(() => {
+        document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isPortfolioPage, location.state]);
 
   const handleScroll = (section) => {
-    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+    if (isPortfolioPage) {
+      // Already on portfolio page, just scroll
+      document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Navigate to portfolio page with scroll target
+      navigate('/portfolio', { state: { scrollTo: section } });
+    }
   };
 
   const navItems = [
