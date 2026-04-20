@@ -45,6 +45,25 @@ function Intro() {
     setTimeout(() => navigate('/portfolio'), 550);
   };
 
+  // Click anywhere to skip the animation or enter portfolio
+  const handleSkip = () => {
+    if (fadeOut) return; // already transitioning
+    if (showButton) {
+      // Animation already done — go straight to portfolio
+      handleEnter();
+    } else {
+      // Skip typing — instantly complete all lines
+      const allLines = BOOT_LINES.map(line => ({
+        ...line,
+        full: line.prefix + line.text,
+      }));
+      setCompletedLines(allLines);
+      setCurrentLine(BOOT_LINES.length);
+      setCurrentChar(0);
+      setShowButton(true);
+    }
+  };
+
   const typingText =
     currentLine < BOOT_LINES.length
       ? (BOOT_LINES[currentLine].prefix + BOOT_LINES[currentLine].text).slice(0, currentChar)
@@ -52,7 +71,8 @@ function Intro() {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-500 ${
+      onClick={handleSkip}
+      className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-500 cursor-pointer ${
         fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
       style={{ background: 'var(--color-bg, #0f1419)' }}
@@ -112,7 +132,7 @@ function Intro() {
         {showButton && (
           <div className="mt-6 flex justify-center" style={{ animation: 'fadeUp 0.4s ease both' }}>
             <button
-              onClick={handleEnter}
+              onClick={(e) => { e.stopPropagation(); handleEnter(); }}
               className="group px-8 py-3 font-mono font-semibold transition-all duration-300 hover:translate-y-[-2px]"
               style={{
                 background: 'transparent',
@@ -135,6 +155,13 @@ function Intro() {
               </span>
             </button>
           </div>
+        )}
+
+        {/* Skip hint — only visible during animation */}
+        {!showButton && (
+          <p className="mt-6 text-center text-xs text-[#555] font-mono" style={{ animation: 'fadeUp 0.6s ease both', animationDelay: '1s' }}>
+            click anywhere to skip
+          </p>
         )}
       </div>
 
