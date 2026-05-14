@@ -1,5 +1,5 @@
 import Reveal from '../components/Reveal';
-import resumePDF from '/assets/Christian_Serrano_Resume_V6.pdf';
+import resumePDF from '/assets/Christian_Serrano_RESUME _.pdf';
 
 const STATS = [
   { value: '3', label: 'Projects Built' },
@@ -64,7 +64,7 @@ function About() {
           <Reveal delay={200}>
             <a
               href={resumePDF}
-              download="Christian_Serrano_Resume_V6.pdf"
+              download="Christian_Serrano_Resume.pdf"
               className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm tracking-wider uppercase transition-all duration-200 hover:translate-y-[-2px] no-underline"
               style={{
                 fontFamily: 'Space Grotesk, sans-serif',

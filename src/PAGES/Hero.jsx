@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import resumePDF from '/assets/Christian_Serrano_Resume_V6.pdf';
+import resumePDF from '/assets/Christian_Serrano_RESUME _.pdf';
 
 const ROLES = ['Full Stack Developer', 'Game Developer', 'CS Student @ UCC', 'Problem Solver'];
 
@@ -152,7 +152,7 @@ function Hero() {
             <iframe src={resumePDF} title="Christian Serrano Resume" className="w-full h-[55vh] md:h-[65vh] mb-4 border border-[var(--border-color)]" />
             <a
               href={resumePDF}
-              download="Christian_Serrano_Resume_V6.pdf"
+              download="Christian_Serrano_Resume.pdf"
               className="px-6 py-2.5 font-semibold text-sm tracking-wider uppercase transition-all duration-200 hover:translate-y-[-2px] inline-flex items-center gap-2 no-underline"
               style={{
                 fontFamily: 'Space Grotesk, sans-serif',
